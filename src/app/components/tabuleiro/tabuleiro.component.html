@@ -1,0 +1,52 @@
+<div class="n-queen-container">
+  <div class="tile-container">
+    <div class="tile-row" *ngFor="let tileRow of tileMap; index as i">
+      <ng-container *ngFor="let tile of tileRow; index as j">
+        <div
+          class="tile"
+          [ngClass]="{
+            black: !((i + j) % 2 == 0) ? true : false,
+            white: (i + j) % 2 == 0 ? true : false
+          }"
+        >
+          <img
+            *ngIf="tile"
+            src="https://cdn.pixabay.com/photo/2012/04/18/00/42/chess-36310_960_720.png"
+            alt=""
+            class="queen"
+          />
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="info-border">
+    <div class="info-container">
+      <div class="info">h: {{ h }}</div>
+      <div class="info">{{ state.queens }}</div>
+      <div class="info">resets: {{ reset }}</div>
+      <div
+        class="button"
+        (click)="!pressed ? run() : null"
+        [ngClass]="{
+        pressed
+      }"
+      >
+        {{ pressed ? "Done ✔" : "Do the magic 👀" }}
+      </div>
+      <div class="rules">
+        <p>
+          As regras do tabuleiro: As rainhas nunca irão se bater em linha e
+          coluna, todos os resets tem isso como padrão, linhas e colunas nunca
+          se batem, o reset ocorre quando é percorrido 35 vezes os vizinhos
+          dentro de um dado estado inicial
+        </p>
+        <p>* h = número de colisões (indiretas e diretas)</p>
+        <p>
+          * Resets = número de vezes em que foi necessário embaralhar a posição
+          das rainhas
+        </p>
+        <strong>PARA RODAR NOVAMENTE, PRESSIONE F5</strong>
+      </div>
+    </div>
+  </div>
+</div>
